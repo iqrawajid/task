@@ -1,34 +1,44 @@
-echo 
+purple="\033[0;35m"
+blue="\033[0;34m"
+red="\033[31m"
+green="\033[0;32m"
+yellow="\033[0;33m"
+cyan="\033[0;36m"
+nc="\033[0m"
+echo "${blue}"
 figlet "Welcome"
 echo "Please enter your domain name: "
 read domain
-echo
+echo 
 sublist3r -v -d $domain -o output.txt
+echo "${green}"
 echo ===========================
-echo
+echo "${yellow}"
 figlet "Subdomains"
-echo
+echo 
 cat output.txt
 echo 
 echo ===========================
-echo
+echo "${green}"
 figlet "Ip Resolution"
 echo
-#here we use forloop for ip resolution
 for ip in $(cat output.txt)
 do
-host $ip | grep "has address" | cut -d " " -f4 | sort
+host $ip | grep "has address" | cut -d " " -f4 | sort -u
 done
-echo 
+echo
+echo ===========================
+echo "${red}"   
 figlet "Brute Force"
 echo
 #I've also attached subdomain.txt file 
 #here we are using dnsrecon tool for subdomain brute host
-sudo dnsrecon -t brt -d $domain -D /home/kali/Desktop/practice/subdomains-top1million-5000.txt -f -c /home/kali/Desktop/practice/output.csv
-echo
+sudo dnsrecon -t brt -d $domain -D /home/kali/Desktop/practice/subdomains-to>
+echo "${cyan}"
 figlet "Results"
 echo 
 #The following command will print the entire output.csv file like cat
+echo 
 awk '{ print $1 } ' output.csv | sort -u | uniq -c
-echo
+echo "${yellow}" 
 figlet "The End"
