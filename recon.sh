@@ -33,7 +33,7 @@ figlet "Brute Force"
 echo
 #I've also attached subdomain.txt file 
 #here we are using dnsrecon tool for subdomain brute host
-sudo dnsrecon -t brt -d $domain -D /home/kali/Desktop/practice/subdomains-to>
+sudo dnsrecon -t brt -d $domain -D /home/kali/Desktop/practice/subdomains-top1million-5000.txt -f -c /home/kali/Desktop/practice/output.csv
 echo "${cyan}"
 figlet "Results"
 echo 
