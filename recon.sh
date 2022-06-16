@@ -40,5 +40,15 @@ echo
 #The following command will print the entire output.csv file like cat
 echo 
 awk '{ print $1 } ' output.csv | sort -u | uniq -c
+echo
+#we are going to scan our subdomains in loop using Nmap
+echo "${blue}"
+figlet "Scanning"
+echo "${green}"
+for scan in $(cat output.txt)
+do
+sudo nmap -sV -O $scan -oN /home/kali/Desktop/practice/output.txt
+done 
+echo ===========================
 echo "${yellow}" 
 figlet "The End"
